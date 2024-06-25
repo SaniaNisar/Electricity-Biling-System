@@ -1,0 +1,3 @@
+1001,1234567890123,John Doe,123 Main St,555-1234,domestic,Single Phase,01/01/2022,0,0
+1002,9876543210987,Jane Smith,456 Elm St,555-5678,commercial,Three Phase,01/02/2022,0,0
+1000,3520227391094,Sania Nisar,223 c2 engineers town,03144313787,domestic,3,25/06/2024,0,-1
