@@ -397,17 +397,29 @@ int main() {
                 Billing newBilling;
                 cout << "Enter Customer ID: ";
                 cin >> newBilling.customerId;
+
+                // Ensure customer ID exists
+                auto customerIt = find_if(customers.begin(), customers.end(),
+                    [&](const Customer& customer) { return customer.customerId == newBilling.customerId; });
+                if (customerIt == customers.end()) {
+                    cout << "Customer ID not found!" << endl;
+                    break;
+                }
+
                 cout << "Enter Billing Month: ";
                 cin >> newBilling.billingMonth;
                 cout << "Enter Current Meter Reading Regular: ";
                 cin >> newBilling.currentMeterReadingRegular;
-                if (customers[newBilling.customerId].meterType == "Three Phase") {
+
+                // Check if the meter type is Three Phase for peak reading
+                if (customerIt->meterType == "Three Phase") {
                     cout << "Enter Current Meter Reading Peak: ";
                     cin >> newBilling.currentMeterReadingPeak;
                 }
                 else {
                     newBilling.currentMeterReadingPeak = -1;
                 }
+
                 cout << "Enter Reading Entry Date (DD/MM/YYYY): ";
                 cin >> newBilling.readingEntryDate;
 
@@ -417,6 +429,7 @@ int main() {
                 addBillingRecord(billingInfo, newBilling);
                 break;
             }
+
             case 4: {
                 int customerId;
                 string billPaidStatus, billPaymentDate;
